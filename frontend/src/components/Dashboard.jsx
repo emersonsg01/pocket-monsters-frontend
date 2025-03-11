@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Grid, Card, CardContent, Typography, Box, CircularProgress, Paper } from '@mui/material';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import axios from 'axios';
+import Weather from './Weather';
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -175,10 +176,7 @@ const Dashboard = () => {
                 <Typography variant="h6" gutterBottom>
                   Weather Information
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Weather information will be displayed here
-                </Typography>
-                {/* Weather API integration will be added here */}
+                <Weather />
               </CardContent>
             </Card>
           </Grid>

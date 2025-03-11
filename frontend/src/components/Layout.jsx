@@ -102,7 +102,7 @@ const Layout = ({ children }) => {
             }}
           >
             <Typography variant="body1">
-              {format(currentDateTime, 'dd/MM/yyyy HH:mm:ss')}
+              {format(currentDateTime, 'EEEE, dd/MM/yyyy HH:mm:ss')}
             </Typography>
           </Paper>
         </Toolbar>
