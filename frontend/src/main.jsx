@@ -1,15 +1,30 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { ThemeProvider, CssBaseline } from '@mui/material'
-import './index.css'
-import App from './App.jsx'
-import theme from './theme'
+import { StrictMode, Suspense } from 'react';
+import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Shell from './pages/Shell';
+import Welcome from './pages/Welcome';
+import Detail from './pages/Detail';
+import { BootScreen, DetailSkeleton, RouteError } from './components/Fallbacks';
+import './styles.css';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Suspense fallback={<BootScreen />}><Shell /></Suspense>,
+    errorElement: <RouteError />,
+    children: [
+      { index: true, element: <Suspense><Welcome /></Suspense> },
+      {
+        path: 'pokemon/:id',
+        element: <Suspense fallback={<DetailSkeleton />}><Detail /></Suspense>,
+        errorElement: <RouteError />,
+      },
+    ],
+  },
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <RouterProvider router={router} />
   </StrictMode>,
-)
+);
