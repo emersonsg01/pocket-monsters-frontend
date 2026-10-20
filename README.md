@@ -55,7 +55,19 @@ O app abre em `http://localhost:5173`.
 
 ## Publicação
 
-O build gera arquivos estáticos em `frontend/dist/` que podem ser hospedados em qualquer serviço estático (Netlify, Vercel, GitHub Pages, Cloudflare Pages…). Duas observações:
+### Vercel
+
+O projeto já vem configurado para a Vercel. Com o repositório conectado, cada push gera um deploy automático: o branch de produção (normalmente `main`) publica o site, e os demais branches geram URLs de prévia.
+
+- O `vercel.json` da raiz instala e compila o app que está em `frontend/` e publica `frontend/dist`. Nas configurações do projeto na Vercel, deixe **Root Directory** vazio (raiz do repositório) e não sobrescreva os comandos de build.
+- Se preferir definir **Root Directory** como `frontend`, também funciona: nesse caso vale o `frontend/vercel.json`, e a Vercel detecta o Vite sozinha.
+- Os dois arquivos redirecionam qualquer rota para o `index.html` (necessário para abrir `/pokemon/25` direto) e configuram cache longo para os arquivos com hash em `/assets/`.
+
+Não é preciso configurar variáveis de ambiente.
+
+### Outros provedores
+
+O build gera arquivos estáticos em `frontend/dist/` que podem ser hospedados em qualquer serviço estático (Netlify, GitHub Pages, Cloudflare Pages…). Duas observações:
 
 - **Rotas da SPA**: endereços como `/pokemon/25` precisam cair no `index.html`. Configure o redirecionamento de fallback do seu provedor (por exemplo, `/* /index.html 200` no Netlify).
 - **Raiz do domínio**: o `index.html` referencia `/pokedex-index.json` e `/pokeball.svg` com caminho absoluto. Para publicar em um subcaminho, ajuste o `base` no `vite.config.js` e esses caminhos.

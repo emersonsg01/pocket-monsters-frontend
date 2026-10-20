@@ -6,6 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - The app lives in `frontend/` (React 19 + Vite 6, plain CSS, no UI library). The root `package.json` is an unused npm stub; run all commands from `frontend/`.
 - `pocket-monsters-backend` is a gitlink (submodule pointer) with no `.gitmodules` entry; it is an empty directory and the current app does not use it. All data comes from the public PokeAPI.
+- Deployed on Vercel from the GitHub repo. Root `vercel.json` builds `frontend/` and serves `frontend/dist`; `frontend/vercel.json` covers the case where the Vercel Root Directory is set to `frontend`. Keep the SPA rewrite and headers in sync between both.
 - UI text is in Brazilian Portuguese (type names, labels). PokeAPI has no pt-BR flavor text, so descriptions/genus use English.
 
 ## Commands (run in `frontend/`)
