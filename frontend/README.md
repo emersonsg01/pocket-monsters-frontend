@@ -1,6 +1,6 @@
-# Pokédex
+# Pokédex — frontend
 
-Pokédex responsiva (celular e desktop) com os 1025 Pokémon, construída com React 19 + Vite e dados da [PokeAPI](https://pokeapi.co).
+Código do app (React 19 + Vite). A documentação completa está no [README da raiz](../README.md) e em [docs/arquitetura.md](../docs/arquitetura.md).
 
 ```bash
 npm install
